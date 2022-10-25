@@ -66,3 +66,113 @@ int main()
 }
 
 ```
+
+1. step01-1_在實習課中有「列出全部質數」的題目。為了思考清楚, 我們今天改從「判斷1個質數」開始寫起。使用for迴圈, 去試2...n-1的數(因為1和n本身,一定會整除)。用一個變數 int bad=0 表示迴圈之前沒有壞掉。如有整除, 就視為失敗、不再是質數。迴圈後,看bad的值, 就知道是不是經過嚴格檢查的質數。用CodeBlocks實作 week08-1.cpp 截圖上傳 week08-1.png
+#include <stdio.h>
+int main()
+{
+    int n;
+    scanf("%d",&n);
+    int bad=0;
+    for(int i=2;i<n;i++){
+        if(n%i==0) bad=1;
+    }
+    if(bad==0) printf("%d 是質數" ,n);
+    else printf("%d 不好,不是質數", n);
+}
+
+
+2. step01-2_實習課中的題目, 有一題是要判段 2...某個範圍裡, 有幾個質數。所以老師在瘋狂程設裡, 先用一個大迴圈, 印出全部的數,讓你了解2...a 的範圍的迴圈。接下來, 利用 week08-1.cpp 程式碼的核心, 來判斷 n 是不是質數。所以, 會有2個迴圈。用瘋狂程設-第07週實習課堂作業-列出質數, 用練習模式, 截圖上傳 week08-2.png。(然後, 再把程式碼 copy 到CodeBlocks, 存檔成 week08-2.cpp)
+#include <stdio.h>
+int main()
+{
+	int i,j,n;
+	scanf("%d",&n);
+	for(i=2;i<=n;i++){
+		for(j=2;j<i;j++){
+			if(i%j==0)
+			{break;}
+		}
+		if (j==i)
+		printf("%d ",i);
+	}
+}
+
+
+3. 為了增加對迴圈的熟悉程度, 老師用加總的範例來講解, 輸入5個數字, 把它們加起來。迴圈前面 int sum=0; 迴圈中間修改 sum += n; 迴圈後面 把 sum 印出來。請用 CodeBocks實作 week08-3.cpp, 截圖上傳 week08-3.png
+#include <stdio.h>
+int main()
+{
+    printf ("請輸入5個數字(要加起來):");
+
+    int n;
+    int sum=0;
+    for(int i=0; i<5; i++){
+        scanf("%d",&n);
+        sum +=n;
+    }
+    printf("總和是:%d",sum);
+}
+
+
+4. 上週實習課,同學大多可以寫出直角三角形, 但今天只剩下不到一半會寫。while迴圈也是。所以老師利用健身的故事說明, 教練幫你把手抬高, 沒辦法練出肌肉。但健身重覆的動作很累、很辛苦, 所以要有個夢想, 就像挖隧道一樣,兩個方向都挖, 比較快看到結果。作法是(1)善用迴圈「建立鷹架(樓層i)」, (2)再把星星搞定, (3) 再把空格搞定, (4) 再拆掉鷹架。請用 CodeBlocks實作 week08-4.cpp 一步步練習, 逐步貼到瘋狂程設(上週的練習), 最後截圖瘋狂程設 week08-4.png 上傳。
+#include <stdio.h>
+int main()
+{
+    int n;
+    scanf("%d",&n);
+
+    for (int i=1; i<=n; i++){
+        for(int k=1;k<=n-i;k++) printf(" ");
+        for(int k=1;k<=i;k++) printf("*");
+        printf("\n");
+        }
+}
+
+
+5. step02-2_大家對while迴圈印直角三角形,幾乎全部忘記了。老師引導大家,先簡化問題,如果for迴圈寫得出來, 就能翻譯成 while迴圈。關鍵問題是,怎麼只用2個for迴圈來寫出「有時候印空格、有時候印星星」的直角三角形。口訣是,正方形。先能用星星印出正方形,表示你的迴圈做好了。接下來if(判斷)來決定什麼時候改印空格, 就要再導一下 第i樓有n-i個空格, 所以 if(k=n-i)時,都印空格,便完成了。請在 CodeBlocks 寫 week08-5.cpp 將正方形完成後, 移到 瘋狂程設, 修改出關鍵的 if(判斷), 成功後瘋狂程設截圖上傳 week08-5.png
+
+#include <stdio.h>
+int main()
+{
+	int n;
+	scanf("%d",&n);
+
+	for(int i=1; i<=n; i++){
+		for(int k=1; k<=n; k++){
+			if(k<=n-i) printf(" ");
+			else	printf("*");
+		}
+		printf("\n");
+	}
+
+
+}
+
+
+6. step03-1_今天大魔王,是要用2個while迴圈, 畫出有空格、有星星的右方直角三角形。它有點難, 尤其只是只能2個迴圈指令。所以老師今天是先用前面2個程式作業來引選, 有正方形, 配合 if(判斷)來決定誰印空格、誰印了星星後, 再將前一個程式, 逐一把 for迴圈的前面初始變數、中間判斷、後面收尾, 變成 while迴圈的樣子。翻譯完就成功了。請在 瘋狂程設 while2 那題練習模式翻譯好,執行通過, 截圖上傳 week08-6.png (程式碼再用CodeBlocks存檔成week08-6.cpp)
+#include <stdio.h>
+int main()
+{
+	int n;
+	scanf("%d",&n);
+
+	int i=1;
+	while (i<=n){
+
+		int k=1;
+		while(k<=n){
+
+			if(k<=n-i) printf(" ");
+			else printf("*");
+			k++;
+
+		}
+		printf("\n");
+		i++;
+	}
+
+
+}
+
+
